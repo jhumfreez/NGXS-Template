@@ -62,13 +62,13 @@ export const extraMockAnimals: Record<string, Partial<Animal>> = {
     },
   },
   ostrich: {
-    name: 'Emperor Penguin',
+    name: 'Ostrich',
     // id omitted
     categories: ['bird', 'fowl', 'herbivore'],
     location: {
       countries: ['Madagascar', 'Saudi Arabia'],
       regions: ['Africa', 'West Asia'],
-      biomes: ['tundra'],
+      biomes: ['sahara'],
     },
   }
 };
