@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Action, Select, State, StateContext, StateToken } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { updateItem } from '@ngxs/store/operators';
+import { mockAnimals } from '../mocks/animal.mock';
 import { Animal } from '../models/models';
 import { AddAnimal, AddLocation } from './zoo.actions';
 
@@ -13,12 +14,12 @@ export interface ZooStateModel {
 
 const ZOO_STATE_TOKEN = new StateToken<ZooStateModel>('zoo');
 
-@State({
+@State<ZooStateModel>({
   name: ZOO_STATE_TOKEN,
   defaults: {
     acceptingNewExhibits: true,
     title: '',
-    inventory: [],
+    inventory: mockAnimals,
   },
 })
 // https://angular.io/api/core/Injectable

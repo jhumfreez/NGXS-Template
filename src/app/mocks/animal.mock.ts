@@ -9,7 +9,7 @@ export const mockAnimals: Animal[] = [
     categories: ['mammal', 'marsupial', 'herbivore'],
     location: {
       countries: ['Australia'],
-      continents: ['Australia'],
+      regions: ['Australia'],
       biomes: ['forest'],
     },
   },
@@ -19,7 +19,7 @@ export const mockAnimals: Animal[] = [
     categories: ['mammal', 'big cat', 'carnivore'],
     location: {
       countries: ['India'],
-      continents: ['South Asia'],
+      regions: ['South Asia'],
       biomes: ['jungle'],
     },
   },
@@ -28,7 +28,7 @@ export const mockAnimals: Animal[] = [
     id: 2,
     categories: ['shark', 'carnivore'],
     location: {
-      continents: ['North America'],
+      regions: ['North America'],
       biomes: ['Salt Water', 'Atlantic Ocean'],
     },
   },
@@ -47,7 +47,7 @@ export const extraMockAnimals: Record<string, Partial<Animal>> = {
     categories: ['bird', 'fowl', 'herbivore'],
     location: {
       countries: ['India'],
-      continents: ['South Asia'],
+      regions: ['South Asia'],
       biomes: ['forest'],
     },
   },
@@ -57,8 +57,18 @@ export const extraMockAnimals: Record<string, Partial<Animal>> = {
     categories: ['bird', 'fowl', 'herbivore'],
     location: {
       countries: [],
-      continents: ['Antarctica'],
+      regions: ['Antarctica'],
       biomes: ['tundra'],
     },
   },
+  ostrich: {
+    name: 'Emperor Penguin',
+    // id omitted
+    categories: ['bird', 'fowl', 'herbivore'],
+    location: {
+      countries: ['Madagascar', 'Saudi Arabia'],
+      regions: ['Africa', 'West Asia'],
+      biomes: ['tundra'],
+    },
+  }
 };

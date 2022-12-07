@@ -1,3 +1,9 @@
 <h3>Start editing to see some magic happen :)</h3>
-<button>Add Animal</button>
-<button>Reset State</button>
+<button (click)="addAnimal()">Add Animal</button>
+<button (click)="resetState()">Reset State</button>
+
+<ul>
+  <li *ngFor="let animal of (animals$ | async)">
+    {{animal.name}}
+  </li>
+</ul>
