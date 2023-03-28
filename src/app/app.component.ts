@@ -4,7 +4,7 @@ import { StateReset } from 'ngxs-reset-plugin';
 import { Observable } from 'rxjs';
 import { mockAnimals } from './mocks/animal.mock';
 import { Animal } from './models/models';
-import { AddAnimal } from './store/zoo.actions';
+import { Zoo } from './store/zoo.actions';
 import { ZooState } from './store/zoo.state';
 import { getRandomInt } from './shared/utils';
 
@@ -21,7 +21,7 @@ export class AppComponent {
 
   addAnimal() {
     const randAnimal = this.getRandomAnimal();
-    this.store.dispatch(new AddAnimal(randAnimal));
+    this.store.dispatch(new Zoo.AddAnimal(randAnimal));
   }
 
   resetState() {

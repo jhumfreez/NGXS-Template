@@ -4,7 +4,7 @@ import { patch } from '@ngxs/store/operators';
 import { updateItem } from '@ngxs/store/operators';
 import { mockAnimals } from '../mocks/animal.mock';
 import { Animal } from '../models/models';
-import { AddAnimal, AddLocation } from './zoo.actions';
+import { Zoo } from './zoo.actions';
 
 export interface ZooStateModel {
   title: string;
@@ -40,18 +40,18 @@ export class ZooState {
     return ctx.getState().inventory.find((x) => x.name === animalName);
   }
 
-  @Action(AddAnimal)
-  addAnimal(ctx: StateContext<ZooStateModel>, action: AddAnimal) {
+  @Action(Zoo.AddAnimal)
+  addAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.AddAnimal) {
     const state = ctx.getState();
     ctx.patchState({
       inventory: [...state.inventory, action.animal],
     });
   }
 
-  @Action(AddLocation)
+  @Action(Zoo.AddLocation)
   addAlias(
     { setState, getState }: StateContext<ZooStateModel>,
-    action: AddLocation
+    action: Zoo.AddLocation
   ) {
     const state = getState();
     const animal: Animal = structuredClone(
