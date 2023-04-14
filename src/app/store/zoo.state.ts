@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Select, State, StateContext, StateToken } from '@ngxs/store';
-import { patch } from '@ngxs/store/operators';
+import { patch, append } from '@ngxs/store/operators';
 import { updateItem } from '@ngxs/store/operators';
 import { mockAnimals } from '../mocks/animal.mock';
 import { Animal } from '../models/models';
@@ -40,12 +40,15 @@ export class ZooState {
     return ctx.getState().inventory.find((x) => x.name === animalName);
   }
 
+  // https://www.ngxs.io/advanced/operators#advanced-example
   @Action(Zoo.AddAnimal)
   addAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.AddAnimal) {
-    const state = ctx.getState();
-    ctx.patchState({
-      inventory: [...state.inventory, action.animal],
-    });
+    // FIXME
+    ctx.setState(
+      patch<ZooStateModel>({
+        inventory: append<Animal>([action.animal]),
+      })
+    );
   }
 
   @Action(Zoo.AddLocation)
