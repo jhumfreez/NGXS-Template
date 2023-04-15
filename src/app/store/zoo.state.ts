@@ -19,7 +19,7 @@ const ZOO_STATE_TOKEN = new StateToken<ZooStateModel>('zoo');
   defaults: {
     acceptingNewExhibits: true,
     title: '',
-    inventory: mockAnimals,
+    inventory: [],
   },
 })
 // https://angular.io/api/core/Injectable
@@ -53,7 +53,10 @@ export class ZooState {
     const len = ctx.getState().inventory.length;
     const latest = ctx.getState().inventory[len - 1];
     console.log('Items', ctx.getState().inventory);
-    if (latest === action.animal || latest.categories === action.animal.categories) {
+    if (
+      latest === action.animal ||
+      latest.categories === action.animal.categories
+    ) {
       console.warn('FIXME: Change should not be by reference!');
     }
   }
