@@ -46,14 +46,14 @@ export class ZooState {
   addAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.AddAnimal) {
     ctx.setState(
       patch<ZooStateModel>({
-        inventory: append<Animal>([action.animal]),
+        inventory: append<Animal>([structuredClone(action.animal)]),
       })
     );
 
     const len = ctx.getState().inventory.length;
     const latest = ctx.getState().inventory[len - 1];
     console.log('Items', ctx.getState().inventory);
-    if (latest === action.animal) {
+    if (latest === action.animal || latest.categories === action.animal.categories) {
       console.warn('FIXME: Change should not be by reference!');
     }
   }
