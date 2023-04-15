@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { StateReset } from 'ngxs-reset-plugin';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { mockAnimals } from './mocks/animal.mock';
 import { Animal } from './models/models';
 import { Zoo } from './store/zoo.actions';

@@ -32,6 +32,7 @@ export class ZooState {
 
   @Select()
   static getInventory(ctx: StateContext<ZooStateModel>) {
+    // debugger;
     return ctx.getState().inventory;
   }
 
@@ -43,12 +44,18 @@ export class ZooState {
   // https://www.ngxs.io/advanced/operators#advanced-example
   @Action(Zoo.AddAnimal)
   addAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.AddAnimal) {
-    // FIXME
     ctx.setState(
       patch<ZooStateModel>({
         inventory: append<Animal>([action.animal]),
       })
     );
+
+    const len = ctx.getState().inventory.length;
+    const latest = ctx.getState().inventory[len - 1];
+    console.log('Items', ctx.getState().inventory);
+    if (latest === action.animal) {
+      console.warn('FIXME: Change should not be by reference!');
+    }
   }
 
   @Action(Zoo.AddLocation)

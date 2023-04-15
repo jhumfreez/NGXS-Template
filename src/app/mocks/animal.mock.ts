@@ -1,6 +1,7 @@
 import { Animal } from '../models/models';
 import { ZooStateModel } from '../store/zoo.state';
 
+// Note about readonly issue: https://stackoverflow.com/questions/53617972/exported-variables-are-read-only
 // I am not a biologist... or great at geography, etc. :P
 export const mockAnimals: Animal[] = [
   {
