@@ -12,8 +12,7 @@ export interface Habitat {
   biomes: string[];
 }
 
-// Like, how much harder is to take care of a tiger vs, say, a peacock?
-// idk, this is filler to simulate a contract w/ arbitrary string values.
+// Filler to simulate a contract w/ arbitrary string values.
 export enum UpkeepComplexity {
   LOW = 'low',
   MEDIUM = 'med',
