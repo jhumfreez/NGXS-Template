@@ -12,7 +12,6 @@ export interface Habitat {
   biomes: string[];
 }
 
-// Filler to simulate a contract w/ arbitrary string values.
 export enum UpkeepComplexity {
   LOW = 'low',
   MEDIUM = 'med',
