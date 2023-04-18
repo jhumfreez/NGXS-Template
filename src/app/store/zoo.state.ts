@@ -6,6 +6,10 @@ import { mockAnimals } from '../mocks/animal.mock';
 import { Animal } from '../models/models';
 import { Zoo } from './zoo.actions';
 
+// TODO: 
+// 1. Ensure one selector executed per change.
+// 2. Nested change is detectable.
+
 export interface ZooStateModel {
   title: string;
   inventory: Animal[];
@@ -77,6 +81,9 @@ export class ZooState {
       console.warn('FIXME: Change should not be by reference!');
     }
   }
+
+  // @Action()
+  // modAnimal(){}
 
   @Action(Zoo.AddLocation)
   addAlias(
