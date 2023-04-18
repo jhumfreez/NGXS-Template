@@ -33,7 +33,7 @@ export class ZooState {
   @Select()
   static getInventory(ctx: StateContext<ZooStateModel>) {
     // debugger;
-    console.log('handling change to inventory');
+    console.log('Handling change to inventory');
     return ctx.getState().inventory;
   }
 

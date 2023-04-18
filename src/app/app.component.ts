@@ -17,7 +17,9 @@ export class AppComponent {
   @Select(ZooState.getInventory)
   animals$: Observable<Animal[]>;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store) {
+    this.animals$.subscribe(test=>console.log('Changed detected',test));
+  }
 
   addAnimal() {
     const randAnimal = this.getRandomAnimal();
