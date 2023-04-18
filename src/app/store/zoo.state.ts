@@ -25,18 +25,27 @@ const ZOO_STATE_TOKEN = new StateToken<ZooStateModel>('zoo');
 // https://angular.io/api/core/Injectable
 @Injectable()
 export class ZooState {
+  @Select([ZooState])
+  static getZoo(ctx: StateContext<ZooStateModel>) {
+    return ctx.getState();
+  }
+
   @Select()
   static getZooTitle(ctx: StateContext<ZooStateModel>) {
     return ctx.getState().title;
   }
 
-  @Select()
-  static getInventory(ctx: StateContext<ZooStateModel>) {
+  @Select([ZooState.getZoo])
+  static getInventory(zoo: ZooStateModel) {
+    // static getInventory(ctx: StateContext<ZooStateModel>) {
     // Note: Default behavior for selectors changes in v4 is to not require injection of state, because it will cause each selector to re-execute on all changes.
     // https://www.ngxs.io/concepts/select#selector-options
     // debugger;
-    console.log('Handling change detected for inventory');
-    return ctx.getState().inventory;
+    console.log(
+      '%c' + 'Handling change detected for inventory!',
+      'color: cyan'
+    );
+    return zoo.inventory;
   }
 
   @Select()
@@ -60,7 +69,7 @@ export class ZooState {
 
     const len = ctx.getState().inventory.length;
     const latest = ctx.getState().inventory[len - 1];
-    console.log(`Patched Inventory (${len}):`, latest);
+    console.log('%c' + `Patched Inventory (${len}):`, 'color:yellow', latest);
     if (
       latest === action.animal ||
       latest.categories === action.animal.categories

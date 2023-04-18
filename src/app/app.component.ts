@@ -18,7 +18,8 @@ export class AppComponent {
   animals$: Observable<Animal[]>;
 
   constructor(private store: Store) {
-    this.animals$.subscribe(test=>console.log('Changed detected',test));
+    // For debug only, remove later
+    this.animals$.subscribe((test) => console.log('Changed detected', test));
   }
 
   addAnimal() {
