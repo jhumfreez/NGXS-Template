@@ -33,6 +33,7 @@ export class ZooState {
   @Select()
   static getInventory(ctx: StateContext<ZooStateModel>) {
     // debugger;
+    console.log('handling change to inventory');
     return ctx.getState().inventory;
   }
 
@@ -52,7 +53,7 @@ export class ZooState {
 
     const len = ctx.getState().inventory.length;
     const latest = ctx.getState().inventory[len - 1];
-    console.log('Items', ctx.getState().inventory);
+    console.log('Patched Inventory:', ctx.getState().inventory);
     if (
       latest === action.animal ||
       latest.categories === action.animal.categories
