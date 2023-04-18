@@ -7,8 +7,8 @@ import { Animal } from '../models/models';
 import { Zoo } from './zoo.actions';
 
 // TODO: 
-// 1. Ensure one selector executed per change.
-// 2. Nested change is detectable.
+// 1. Nested change is detectable.
+// 2. Ensure one selector executed per change.
 
 export interface ZooStateModel {
   title: string;
