@@ -32,6 +32,8 @@ export class ZooState {
 
   @Select()
   static getInventory(ctx: StateContext<ZooStateModel>) {
+    // Note: Default behavior for selectors changes in v4 is to not require injection of state, because it will cause each selector to re-execute on all changes.
+    // https://www.ngxs.io/concepts/select#selector-options
     // debugger;
     console.log('Handling change detected for inventory');
     return ctx.getState().inventory;
