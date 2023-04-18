@@ -58,7 +58,7 @@ export class ZooState {
 
     const len = ctx.getState().inventory.length;
     const latest = ctx.getState().inventory[len - 1];
-    console.log('Patched Inventory:', ctx.getState().inventory);
+    console.log(`Patched Inventory (${len}):`, latest);
     if (
       latest === action.animal ||
       latest.categories === action.animal.categories
