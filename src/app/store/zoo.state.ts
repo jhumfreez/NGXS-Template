@@ -33,7 +33,7 @@ export class ZooState {
   @Select()
   static getInventory(ctx: StateContext<ZooStateModel>) {
     // debugger;
-    console.log('Handling change to inventory');
+    console.log('Handling change detected for inventory');
     return ctx.getState().inventory;
   }
 
@@ -45,9 +45,14 @@ export class ZooState {
   // https://www.ngxs.io/advanced/operators#advanced-example
   @Action(Zoo.AddAnimal)
   addAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.AddAnimal) {
+    // Note: structuredClone supported in NodeJS v17+
+    // - For types: @types/node (version should match the one supported by your NodeJS runtime)
+    // https://developer.mozilla.org/en-US/docs/Web/API/structuredClone#browser_compatibility
+    const newAnimal: Animal = structuredClone(action.animal);
+
     ctx.setState(
       patch<ZooStateModel>({
-        inventory: append<Animal>([structuredClone(action.animal)]),
+        inventory: append<Animal>([newAnimal]),
       })
     );
 
