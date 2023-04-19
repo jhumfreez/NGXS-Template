@@ -22,7 +22,7 @@ import { Zoo } from './zoo.actions';
  * Immer + NGXS tutorial (not used here at the moment)
  * - https://timdeschryver.dev/blog/simple-state-mutations-in-ngrx-with-immer#side-by-side-comparison
  * Check out their stackblitz demo
- * - https://stackoverflow.com/a/65045014/7542688 
+ * - https://stackoverflow.com/a/65045014/7542688
  */
 
 export interface ZooStateModel {
@@ -108,28 +108,29 @@ export class ZooState {
     }
   }
 
+  // Gets complicated in a hurry. May have to consider flattening
+  // https://www.ngxs.io/recipes/style-guide#flatten-deep-object-graphs
   @Action(Zoo.ModAnimal)
   modifyAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.ModAnimal) {
     const patchEntry = structuredClone(action.animal);
     ctx.setState(
       patch<ZooStateModel>({
-        inventory: updateItem<Animal> (
-          animal => animal.id === action.animal.id,
+        inventory: updateItem<Animal>(
+          (animal) => animal.id === action.animal.id,
           // Note: Will this overwrite or patch? Assuming overwrite.
-          // action.animal
           patch<Animal>({
-            name: patchEntry.name,// string;
-            categories: patchEntry?.categories,//: string[];
+            name: patchEntry.name,
+            categories: patchEntry?.categories,
             location: patch<Habitat>({
-              // oh no... insert, update, or overwrite?...
-              ...patchEntry.location
-            }),// Habitat;
+              // TODO: insert, update, or overwrite?...
+              ...patchEntry.location,
+            }),
             id: patchEntry.id,
             dateModified: Date.now(),
           })
-        )
+        ),
       })
-    )
+    );
   }
 
   @Action(Zoo.AddLocation)
