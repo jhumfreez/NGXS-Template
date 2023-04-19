@@ -5,6 +5,8 @@ import { Animal, Habitat } from '../models/models';
 // https://typescript-eslint.io/rules/no-namespace/
 // - Consider eslint configuration "recommended"
 // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/src/configs/recommended.ts
+// - idk what the best approach is to balance bundle sizes and name pollution. So here's some context:
+// https://stackoverflow.com/questions/54923338/javascript-typescript-whats-the-difference-between-exporting-single-functions
 export namespace Zoo {
   export class AddAnimal {
     static readonly type = '[Zoo] Add Animal';

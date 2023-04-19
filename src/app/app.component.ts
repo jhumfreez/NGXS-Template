@@ -30,10 +30,14 @@ export class AppComponent {
     this.store.dispatch(new Zoo.AddAnimal(randAnimal));
   }
 
-  // Keeping this simple for now.
   setTitle() {
+    const currentTitle = this.store.selectSnapshot(ZooState.getZooTitle);
     const options = ['Kansas City', 'San Diego', 'Austin', 'Pheonix'];
-    this.store.dispatch(new Zoo.SetTitle());
+    let newOption = currentTitle;
+    while(newOption === currentTitle){
+      newOption = options[getRandomInt(options.length-1)];
+    }
+    this.store.dispatch(new Zoo.SetTitle(newOption));
   }
 
   resetState() {
