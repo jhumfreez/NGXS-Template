@@ -3,3 +3,20 @@ button {
   display: block;
   margin-top: 15px;
 }
+
+button.btn_toggle--engaged {
+  filter: brightness(65%);
+}
+
+form {
+  margin: 10px;
+}
+
+input.ng-invalid {
+  border-color: rgb(218, 59, 59);
+  border-width: 2px;
+}
+
+label {
+  font-size: 0.8rem;
+}

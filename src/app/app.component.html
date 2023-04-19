@@ -1,22 +1,36 @@
-<h3>Start editing to see some magic happen :)</h3>
-<h2>{{ title$ | async }} Zoo</h2>
+<div class="container">
+  <div class="grid__header">
+    <h2>{{ title$ | async }} Zoo</h2>
+  </div>
 
-<button (click)="addAnimal()">Add Animal</button>
-<button (click)="resetState()">Reset State</button>
-<button (click)="setTitle()">Set Title</button>
-
-<ul>
-  <li *ngFor="let animal of animals$ | async">
-    <ng-container
-      *ngTemplateOutlet="animalOut; context: { animal: this.animal }"
-    ></ng-container>
-  </li>
-</ul>
+  <div class="grid__btns">
+    <button (click)="addAnimal()">Add Animal</button>
+    <button (click)="resetState()">Reset State</button>
+    <button (click)="setTitle()">Set Title</button>
+  </div>
+  <div>
+    <ul>
+      <li class="grid__content" *ngFor="let animal of animals$ | async">
+        <ng-container
+          *ngTemplateOutlet="animalOut; context: { animal: this.animal }"
+        ></ng-container>
+      </li>
+    </ul>
+  </div>
+</div>
 
 <ng-template #animalOut let-animal="animal">
   {{ animal.name }}
   <ul>
-    <li>ID: {{animal.id}}</li>
+    <li>ID: {{ animal.id }}</li>
     <li>Date Modified: {{ animal.dateModified | date: 'short' }}</li>
   </ul>
+  <app-edit-animal
+  class="grid__side-bar"
+    (patch)="editAnimal($event)"
+    [animal]="animal"
+  ></app-edit-animal>
 </ng-template>
+
+<!-- <ng-template #editForm>
+</ng-template> -->

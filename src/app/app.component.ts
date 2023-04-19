@@ -45,6 +45,10 @@ export class AppComponent {
     this.store.dispatch(new StateReset(ZooState));
   }
 
+  editAnimal(animal: Animal) {
+    this.store.dispatch(new Zoo.ModAnimal(animal));
+  }
+
   private getRandomAnimal(): Animal {
     const randIndex = getRandomInt(mockAnimals.length - 1);
     return mockAnimals[randIndex];
