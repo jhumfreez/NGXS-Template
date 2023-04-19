@@ -17,6 +17,12 @@ import { Zoo } from './zoo.actions';
 // 1. Nested change is detectable.
 // 2. Ensure one selector executed per change.
 
+/**
+ * Additional resources:
+ * - https://stackoverflow.com/a/65045014/7542688
+ * -- Check out their stackblitz demo
+ */
+
 export interface ZooStateModel {
   title: string;
   inventory: Animal[];
@@ -101,7 +107,18 @@ export class ZooState {
   }
 
   @Action(Zoo.ModAnimal)
-  modifyAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.ModAnimal) {}
+  modifyAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.ModAnimal) {
+    ctx.setState(
+      patch<ZooStateModel>({
+        inventory: updateItem<Animal> (
+          animal => animal.id === action.animal.id,
+          // Note: Will this overwrite or patch?
+          // action.animal
+          (action.animal)
+        )
+      })
+    )
+  }
 
   @Action(Zoo.AddLocation)
   addAlias(
