@@ -82,6 +82,7 @@ export class ZooState {
     // https://developer.mozilla.org/en-US/docs/Web/API/structuredClone#browser_compatibility
     const newAnimal: Animal = structuredClone(action.animal);
 
+    // Note: Unsure if patchState supports state operators.
     ctx.setState(
       patch<ZooStateModel>({
         inventory: append<Animal>([newAnimal]),
@@ -123,13 +124,8 @@ export class ZooState {
 
   @Action(Zoo.SetTitle)
   setTitle(ctx: StateContext<ZooStateModel>, action: Zoo.SetTitle) {
-    // ctx.patchState({
-    //   title: action.title
-    // });
-    ctx.setState(
-      patch<ZooStateModel>({
-        title: action.title,
-      })
-    );
+    ctx.patchState({
+      title: action.title
+    });
   }
 }
