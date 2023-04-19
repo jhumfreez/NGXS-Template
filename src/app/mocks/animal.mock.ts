@@ -4,7 +4,6 @@ import { ZooStateModel } from '../store/zoo.state';
 
 // I am not a biologist... or great at geography, etc. :P
 
-
 // Format of a Map if stored in an acceptable format for NGXS
 // - Note: Suggestion is also to flatten deep objects
 // https://www.ngxs.io/recipes/style-guide#flatten-deep-object-graphs
@@ -68,7 +67,7 @@ export const mockAnimals: Animal[] = [
     id: getUniqueId(),
     categories: ['shark', 'carnivore'],
     location: {
-      biomes: ['Salt Water', 'Atlantic Ocean'],
+      biomes: ['Atlantic Ocean'],
     },
     dateModified: 0,
   },
@@ -80,6 +79,5 @@ export const mockAnimals: Animal[] = [
 export const mockZooState: ZooStateModel = {
   title: 'San Diego',
   acceptingNewExhibits: true,
-  inventory: mockAnimals.slice(0,3),
+  inventory: mockAnimals.slice(0, 3),
 };
-
