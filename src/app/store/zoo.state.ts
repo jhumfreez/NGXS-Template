@@ -136,6 +136,7 @@ export class ZooState {
     );
   }
 
+  // Unused
   @Action(Zoo.AddLocation)
   addAlias(
     { setState, getState }: StateContext<ZooStateModel>,
