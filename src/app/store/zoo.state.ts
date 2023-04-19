@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Action, Select, Selector, State, StateContext, StateToken } from '@ngxs/store';
+import {
+  Action,
+  Select,
+  Selector,
+  State,
+  StateContext,
+  StateToken,
+} from '@ngxs/store';
 import { patch, append } from '@ngxs/store/operators';
 import { updateItem } from '@ngxs/store/operators';
 import { mockAnimals } from '../mocks/animal.mock';
 import { Animal } from '../models/models';
 import { Zoo } from './zoo.actions';
 
-// TODO: 
+// TODO:
 // 1. Nested change is detectable.
 // 2. Ensure one selector executed per change.
 
@@ -31,18 +38,22 @@ const ZOO_STATE_TOKEN = new StateToken<ZooStateModel>('zoo');
 export class ZooState {
   // Note: Default behavior in docs seems to suggest any Selector derived inside this class will likely behave
   // as if it didn't specify a state to inject. That means this will cause it to execute on every update.
+  // - This is not desireable. Selectors that perform operations like finding something in a list (or something more expensive; selectors are capable of async operations) will run way more often than necessary.
   @Selector([ZooState])
   static getZoo(ctx: StateContext<ZooStateModel>) {
+    console.log(
+      '%c' + 'Handling change detected for entire state!',
+      'color: orange'
+    );
     return ctx.getState();
   }
 
-  // @Select() // OMG "Selector" not "Select" *cries*
-  @Selector()
-  static getZooTitle(ctx: StateContext<ZooStateModel>) {
-    return ctx.getState().title;
+  // @Select() // OMG "Selector" not "Select"! *cries*
+  @Selector([ZooState.getZoo])
+  static getZooTitle(zoo: ZooStateModel) {
+    return zoo.title;
   }
 
-  // @Select([ZooState.getZoo]) // Should be "Selector" not "Select"...
   @Selector([ZooState.getZoo])
   static getInventory(zoo: ZooStateModel) {
     // static getInventory(ctx: StateContext<ZooStateModel>) {
@@ -111,12 +122,14 @@ export class ZooState {
   }
 
   @Action(Zoo.SetTitle)
-  setTitle(
-    ctx: StateContext<ZooStateModel>,
-    action: Zoo.SetTitle
-  ){
-    ctx.patchState({
-      title: action.title
-    });
+  setTitle(ctx: StateContext<ZooStateModel>, action: Zoo.SetTitle) {
+    // ctx.patchState({
+    //   title: action.title
+    // });
+    ctx.setState(
+      patch<ZooStateModel>({
+        title: action.title,
+      })
+    );
   }
 }

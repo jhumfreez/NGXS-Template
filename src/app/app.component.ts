@@ -14,6 +14,9 @@ import { getRandomInt } from './shared/utils';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  @Select(ZooState.getZooTitle)
+  title$: Observable<string>;
+
   @Select(ZooState.getInventory)
   animals$: Observable<Animal[]>;
 
@@ -25,6 +28,11 @@ export class AppComponent {
   addAnimal() {
     const randAnimal = this.getRandomAnimal();
     this.store.dispatch(new Zoo.AddAnimal(randAnimal));
+  }
+
+  // Keeping this simple for now.
+  setTitle() {
+    this.store.dispatch(new Zoo.SetTitle('Kansas City Zoo'));
   }
 
   resetState() {
