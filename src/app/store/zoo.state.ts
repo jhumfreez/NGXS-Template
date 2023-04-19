@@ -9,7 +9,7 @@ import {
 } from '@ngxs/store';
 import { patch, append } from '@ngxs/store/operators';
 import { updateItem } from '@ngxs/store/operators';
-import { mockAnimals } from '../mocks/animal.mock';
+import { mockAnimals, mockZooState } from '../mocks/animal.mock';
 import { Animal } from '../models/models';
 import { Zoo } from './zoo.actions';
 
@@ -29,7 +29,7 @@ const ZOO_STATE_TOKEN = new StateToken<ZooStateModel>('zoo');
   name: ZOO_STATE_TOKEN,
   defaults: {
     acceptingNewExhibits: true,
-    title: '',
+    title: mockZooState.title,
     inventory: [],
   },
 })

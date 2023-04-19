@@ -37,7 +37,7 @@ export const mockAnimals: Animal[] = [
 ];
 
 export const mockZooState: ZooStateModel = {
-  title: 'San Diego Zoo',
+  title: 'San Diego',
   acceptingNewExhibits: true,
   inventory: mockAnimals,
 };
