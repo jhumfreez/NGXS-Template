@@ -11,6 +11,7 @@ import { patch, append } from '@ngxs/store/operators';
 import { updateItem } from '@ngxs/store/operators';
 import { mockAnimals, mockZooState } from '../mocks/animal.mock';
 import { Animal, Habitat } from '../models/models';
+import { getUniqueId } from '../shared/utils';
 import { Zoo } from './zoo.actions';
 
 // TODO:
@@ -35,11 +36,7 @@ const ZOO_STATE_TOKEN = new StateToken<ZooStateModel>('zoo');
 
 @State<ZooStateModel>({
   name: ZOO_STATE_TOKEN,
-  defaults: {
-    acceptingNewExhibits: true,
-    title: mockZooState.title,
-    inventory: [],
-  },
+  defaults: mockZooState,
 })
 // https://angular.io/api/core/Injectable
 @Injectable()
@@ -93,7 +90,11 @@ export class ZooState {
     // Note: Unsure if patchState supports state operators.
     ctx.setState(
       patch<ZooStateModel>({
-        inventory: append<Animal>([newAnimal]),
+        inventory: append<Animal>([{
+          ...newAnimal,
+          id: getUniqueId(),
+          dateModified: Date.now()
+        }]),
       })
     );
 
