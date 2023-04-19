@@ -90,11 +90,13 @@ export class ZooState {
     // Note: Unsure if patchState supports state operators.
     ctx.setState(
       patch<ZooStateModel>({
-        inventory: append<Animal>([{
-          ...newAnimal,
-          id: getUniqueId(),
-          dateModified: Date.now()
-        }]),
+        inventory: append<Animal>([
+          {
+            ...newAnimal,
+            id: getUniqueId(),
+            dateModified: Date.now(),
+          },
+        ]),
       })
     );
 
@@ -145,10 +147,13 @@ export class ZooState {
     );
     setState(
       patch<ZooStateModel>({
-        inventory: updateItem<Animal>((animal) => animal.id === action.animalId, {
-          ...animal,
-          location: animal.location,
-        }),
+        inventory: updateItem<Animal>(
+          (animal) => animal.id === action.animalId,
+          {
+            ...animal,
+            location: animal.location,
+          }
+        ),
       })
     );
   }
