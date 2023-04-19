@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Action, Select, State, StateContext, StateToken } from '@ngxs/store';
+import { Action, Select, Selector, State, StateContext, StateToken } from '@ngxs/store';
 import { patch, append } from '@ngxs/store/operators';
 import { updateItem } from '@ngxs/store/operators';
 import { mockAnimals } from '../mocks/animal.mock';
@@ -29,17 +29,21 @@ const ZOO_STATE_TOKEN = new StateToken<ZooStateModel>('zoo');
 // https://angular.io/api/core/Injectable
 @Injectable()
 export class ZooState {
-  @Select([ZooState])
+  // Note: Default behavior in docs seems to suggest any Selector derived inside this class will likely behave
+  // as if it didn't specify a state to inject. That means this will cause it to execute on every update.
+  @Selector([ZooState])
   static getZoo(ctx: StateContext<ZooStateModel>) {
     return ctx.getState();
   }
 
-  @Select()
+  // @Select() // OMG "Selector" not "Select" *cries*
+  @Selector()
   static getZooTitle(ctx: StateContext<ZooStateModel>) {
     return ctx.getState().title;
   }
 
-  @Select([ZooState.getZoo])
+  // @Select([ZooState.getZoo]) // Should be "Selector" not "Select"...
+  @Selector([ZooState.getZoo])
   static getInventory(zoo: ZooStateModel) {
     // static getInventory(ctx: StateContext<ZooStateModel>) {
     // Note: Default behavior for selectors changes in v4 is to not require injection of state, because it will cause each selector to re-execute on all changes.
@@ -52,7 +56,9 @@ export class ZooState {
     return zoo.inventory;
   }
 
-  @Select()
+  // Note: Should probably consider memoizing this.
+  // https://www.ngxs.io/advanced/optimizing-selectors
+  @Selector()
   static getAnimal(ctx: StateContext<ZooStateModel>, animalName: string) {
     return ctx.getState().inventory.find((x) => x.name === animalName);
   }
@@ -102,5 +108,15 @@ export class ZooState {
         }),
       })
     );
+  }
+
+  @Action(Zoo.SetTitle)
+  setTitle(
+    ctx: StateContext<ZooStateModel>,
+    action: Zoo.SetTitle
+  ){
+    ctx.patchState({
+      title: action.title
+    });
   }
 }
