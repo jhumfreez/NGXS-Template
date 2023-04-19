@@ -2,7 +2,8 @@ export interface Animal {
   name: string;
   categories?: string[];
   location: Habitat;
-  id: number;
+  id: string;
+  dateModified: number;
 }
 
 export interface Habitat {

@@ -10,7 +10,7 @@ import {
 import { patch, append } from '@ngxs/store/operators';
 import { updateItem } from '@ngxs/store/operators';
 import { mockAnimals, mockZooState } from '../mocks/animal.mock';
-import { Animal } from '../models/models';
+import { Animal, Habitat } from '../models/models';
 import { Zoo } from './zoo.actions';
 
 // TODO:
@@ -19,8 +19,10 @@ import { Zoo } from './zoo.actions';
 
 /**
  * Additional resources:
- * - https://stackoverflow.com/a/65045014/7542688
- * -- Check out their stackblitz demo
+ * Immer + NGXS tutorial (not used here at the moment)
+ * - https://timdeschryver.dev/blog/simple-state-mutations-in-ngrx-with-immer#side-by-side-comparison
+ * Check out their stackblitz demo
+ * - https://stackoverflow.com/a/65045014/7542688 
  */
 
 export interface ZooStateModel {
@@ -108,13 +110,23 @@ export class ZooState {
 
   @Action(Zoo.ModAnimal)
   modifyAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.ModAnimal) {
+    const patchEntry = structuredClone(action.animal);
     ctx.setState(
       patch<ZooStateModel>({
         inventory: updateItem<Animal> (
           animal => animal.id === action.animal.id,
-          // Note: Will this overwrite or patch?
+          // Note: Will this overwrite or patch? Assuming overwrite.
           // action.animal
-          (action.animal)
+          patch<Animal>({
+            name: patchEntry.name,// string;
+            categories: patchEntry?.categories,//: string[];
+            location: patch<Habitat>({
+              // oh no... insert, update, or overwrite?...
+              ...patchEntry.location
+            }),// Habitat;
+            id: patchEntry.id,
+            dateModified: Date.now(),
+          })
         )
       })
     )

@@ -21,7 +21,7 @@ export namespace Zoo {
 
   export class AddLocation {
     static readonly type = '[Zoo] Add Animal Location';
-    constructor(public animalId: number, public location: Habitat) {}
+    constructor(public animalId: string, public location: Habitat) {}
   }
 
   export class SetTitle {

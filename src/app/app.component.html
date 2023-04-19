@@ -7,6 +7,7 @@
 
 <ul>
   <li *ngFor="let animal of (animals$ | async)">
-    {{animal.name}}
+    {{animal.name}} - {{animal.dateModified | date:'short'}}
   </li>
 </ul>
+
