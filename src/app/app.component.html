@@ -1,16 +1,16 @@
 <div class="container">
-  <div class="grid__header">
+  <div class="header">
     <h2>{{ title$ | async }} Zoo</h2>
   </div>
 
-  <div class="grid__btns">
+  <div class="btns">
     <button (click)="addAnimal()">Add Animal</button>
     <button (click)="resetState()">Reset State</button>
     <button (click)="setTitle()">Set Title</button>
   </div>
   <div>
     <ul>
-      <li class="grid__content" *ngFor="let animal of animals$ | async">
+      <li class="content" *ngFor="let animal of animals$ | async">
         <ng-container
           *ngTemplateOutlet="animalOut; context: { animal: this.animal }"
         ></ng-container>
@@ -26,11 +26,8 @@
     <li>Date Modified: {{ animal.dateModified | date: 'short' }}</li>
   </ul>
   <app-edit-animal
-  class="grid__side-bar"
+    class="edit__form"
     (patch)="editAnimal($event)"
     [animal]="animal"
   ></app-edit-animal>
 </ng-template>
-
-<!-- <ng-template #editForm>
-</ng-template> -->
