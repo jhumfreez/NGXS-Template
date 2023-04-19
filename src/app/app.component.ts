@@ -32,7 +32,8 @@ export class AppComponent {
 
   // Keeping this simple for now.
   setTitle() {
-    this.store.dispatch(new Zoo.SetTitle('Kansas City Zoo'));
+    const options = ['Kansas City', 'San Diego', 'Austin', 'Pheonix'];
+    this.store.dispatch(new Zoo.SetTitle());
   }
 
   resetState() {
