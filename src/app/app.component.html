@@ -1,9 +1,6 @@
 <div class="container">
-  <div class="header">
-    <h2>{{ title$ | async }} Zoo</h2>
-  </div>
-
-  <div class="btns">
+  <h2 class="header">{{ title$ | async }} Zoo</h2>
+  <div class="btn__row">
     <button (click)="addAnimal()">Add Animal</button>
     <button (click)="resetState()">Reset State</button>
     <button (click)="setTitle()">Set Title</button>
