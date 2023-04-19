@@ -72,6 +72,7 @@ export class ZooState {
     return zoo.inventory;
   }
 
+  // Unused
   // Note: Should probably consider memoizing this.
   // https://www.ngxs.io/advanced/optimizing-selectors
   @Selector()
@@ -138,7 +139,7 @@ export class ZooState {
 
   // Unused
   @Action(Zoo.AddLocation)
-  addAlias(
+  addLocation(
     { setState, getState }: StateContext<ZooStateModel>,
     action: Zoo.AddLocation
   ) {

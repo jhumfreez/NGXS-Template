@@ -19,6 +19,7 @@ type AnimalFormGroup = {
     <form *ngIf="visible" (submit)="notifyEdit()" [formGroup]="editForm">
       <label for="animalName">Name:</label>
       <input id="animalName" formControlName="name" maxLength="30">
+          
       <button type="submit" [disabled]="editForm.controls.name.pristine||editForm.invalid">Update</button>
     </form>
   `,
