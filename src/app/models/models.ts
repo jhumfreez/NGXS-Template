@@ -7,7 +7,6 @@ export interface Animal {
 }
 
 export interface Habitat {
-  regions?: string[];
   countries?: string[];
   biomes: string[];
 }

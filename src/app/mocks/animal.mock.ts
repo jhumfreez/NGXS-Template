@@ -15,7 +15,6 @@ export const extraMockAnimals: Record<string, Animal> = {
     categories: ['bird', 'fowl', 'herbivore'],
     location: {
       countries: ['India'],
-      regions: ['South Asia'],
       biomes: ['forest'],
     },
     dateModified: 0,
@@ -26,7 +25,6 @@ export const extraMockAnimals: Record<string, Animal> = {
     categories: ['bird', 'fowl', 'herbivore'],
     location: {
       countries: [],
-      regions: ['Antarctica'],
       biomes: ['tundra'],
     },
     dateModified: 0,
@@ -37,7 +35,6 @@ export const extraMockAnimals: Record<string, Animal> = {
     categories: ['bird', 'fowl', 'herbivore'],
     location: {
       countries: ['Madagascar', 'Saudi Arabia'],
-      regions: ['Africa', 'West Asia'],
       biomes: ['sahara'],
     },
     dateModified: 0,
@@ -52,7 +49,6 @@ export const mockAnimals: Animal[] = [
     categories: ['mammal', 'marsupial', 'herbivore'],
     location: {
       countries: ['Australia'],
-      regions: ['Australia'],
       biomes: ['forest'],
     },
     dateModified: 0,
@@ -63,7 +59,6 @@ export const mockAnimals: Animal[] = [
     categories: ['mammal', 'big cat', 'carnivore'],
     location: {
       countries: ['India'],
-      regions: ['South Asia'],
       biomes: ['jungle'],
     },
     dateModified: 0,
@@ -73,7 +68,6 @@ export const mockAnimals: Animal[] = [
     id: getUniqueId(),
     categories: ['shark', 'carnivore'],
     location: {
-      regions: ['North America'],
       biomes: ['Salt Water', 'Atlantic Ocean'],
     },
     dateModified: 0,

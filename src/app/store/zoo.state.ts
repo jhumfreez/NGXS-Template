@@ -145,7 +145,7 @@ export class ZooState {
     );
     setState(
       patch<ZooStateModel>({
-        inventory: updateItem<Animal>((x) => x.id === action.animalId, {
+        inventory: updateItem<Animal>((animal) => animal.id === action.animalId, {
           ...animal,
           location: animal.location,
         }),
