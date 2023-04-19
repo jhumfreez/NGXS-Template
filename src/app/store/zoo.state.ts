@@ -59,7 +59,7 @@ export class ZooState {
     // static getInventory(ctx: StateContext<ZooStateModel>) {
     // Note: Default behavior for selectors changes in v4 is to not require injection of state, because it will cause each selector to re-execute on all changes.
     // https://www.ngxs.io/concepts/select#selector-options
-    // debugger;
+    // https://www.ngxs.io/advanced/optimizing-selectors
     console.log(
       '%c' + 'Handling change detected for inventory!',
       'color: cyan'
@@ -100,8 +100,8 @@ export class ZooState {
     }
   }
 
-  // @Action()
-  // modAnimal(){}
+  @Action(Zoo.ModAnimal)
+  modifyAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.ModAnimal) {}
 
   @Action(Zoo.AddLocation)
   addAlias(
@@ -125,7 +125,7 @@ export class ZooState {
   @Action(Zoo.SetTitle)
   setTitle(ctx: StateContext<ZooStateModel>, action: Zoo.SetTitle) {
     ctx.patchState({
-      title: action.title
+      title: action.title,
     });
   }
 }
