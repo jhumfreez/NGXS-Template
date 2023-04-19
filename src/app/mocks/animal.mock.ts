@@ -4,47 +4,6 @@ import { ZooStateModel } from '../store/zoo.state';
 
 // I am not a biologist... or great at geography, etc. :P
 
-// Note about readonly issue: https://stackoverflow.com/questions/53617972/exported-variables-are-read-only
-export const mockAnimals: Animal[] = [
-  {
-    name: 'Koala',
-    id: getUniqueId(),
-    categories: ['mammal', 'marsupial', 'herbivore'],
-    location: {
-      countries: ['Australia'],
-      regions: ['Australia'],
-      biomes: ['forest'],
-    },
-    dateModified: 0,
-  },
-  {
-    name: 'Bengal Tiger',
-    id: getUniqueId(),
-    categories: ['mammal', 'big cat', 'carnivore'],
-    location: {
-      countries: ['India'],
-      regions: ['South Asia'],
-      biomes: ['jungle'],
-    },
-    dateModified: 0,
-  },
-  {
-    name: 'Great White Shark',
-    id: getUniqueId(),
-    categories: ['shark', 'carnivore'],
-    location: {
-      regions: ['North America'],
-      biomes: ['Salt Water', 'Atlantic Ocean'],
-    },
-    dateModified: 0,
-  },
-];
-
-export const mockZooState: ZooStateModel = {
-  title: 'San Diego',
-  acceptingNewExhibits: true,
-  inventory: mockAnimals,
-};
 
 // Format of a Map if stored in an acceptable format for NGXS
 // - Note: Suggestion is also to flatten deep objects
@@ -84,3 +43,49 @@ export const extraMockAnimals: Record<string, Animal> = {
     dateModified: 0,
   },
 };
+
+// Note about readonly issue: https://stackoverflow.com/questions/53617972/exported-variables-are-read-only
+export const mockAnimals: Animal[] = [
+  {
+    name: 'Koala',
+    id: getUniqueId(),
+    categories: ['mammal', 'marsupial', 'herbivore'],
+    location: {
+      countries: ['Australia'],
+      regions: ['Australia'],
+      biomes: ['forest'],
+    },
+    dateModified: 0,
+  },
+  {
+    name: 'Bengal Tiger',
+    id: getUniqueId(),
+    categories: ['mammal', 'big cat', 'carnivore'],
+    location: {
+      countries: ['India'],
+      regions: ['South Asia'],
+      biomes: ['jungle'],
+    },
+    dateModified: 0,
+  },
+  {
+    name: 'Great White Shark',
+    id: getUniqueId(),
+    categories: ['shark', 'carnivore'],
+    location: {
+      regions: ['North America'],
+      biomes: ['Salt Water', 'Atlantic Ocean'],
+    },
+    dateModified: 0,
+  },
+  extraMockAnimals['peacock'],
+  extraMockAnimals['ostrich'],
+  extraMockAnimals['penguin'],
+];
+
+export const mockZooState: ZooStateModel = {
+  title: 'San Diego',
+  acceptingNewExhibits: true,
+  inventory: mockAnimals.slice(0,3),
+};
+

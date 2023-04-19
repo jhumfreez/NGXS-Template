@@ -27,15 +27,15 @@ export class AppComponent {
 
   addAnimal() {
     const randAnimal = this.getRandomAnimal();
-    this.store.dispatch(new Zoo.AddAnimal(randAnimal));
+    this.store.dispatch(new Zoo.InsertAnimal(randAnimal));
   }
 
   setTitle() {
     const currentTitle = this.store.selectSnapshot(ZooState.getZooTitle);
     const options = ['Kansas City', 'San Diego', 'Austin', 'Pheonix'];
     let newOption = currentTitle;
-    while(newOption === currentTitle){
-      newOption = options[getRandomInt(options.length-1)];
+    while (newOption === currentTitle) {
+      newOption = options[getRandomInt(options.length - 1)];
     }
     this.store.dispatch(new Zoo.SetTitle(newOption));
   }

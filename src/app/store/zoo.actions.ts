@@ -8,8 +8,8 @@ import { Animal, Habitat } from '../models/models';
 // - idk what the best approach is to balance bundle sizes and name pollution. So here's some context:
 // https://stackoverflow.com/questions/54923338/javascript-typescript-whats-the-difference-between-exporting-single-functions
 export namespace Zoo {
-  export class AddAnimal {
-    static readonly type = '[Zoo] Add Animal';
+  export class InsertAnimal {
+    static readonly type = '[Zoo] Insert Animal';
     constructor(public animal: Animal) {}
   }
 

@@ -1,13 +1,22 @@
 <h3>Start editing to see some magic happen :)</h3>
-<h2>{{title$ | async}} Zoo</h2>
+<h2>{{ title$ | async }} Zoo</h2>
 
 <button (click)="addAnimal()">Add Animal</button>
 <button (click)="resetState()">Reset State</button>
 <button (click)="setTitle()">Set Title</button>
 
 <ul>
-  <li *ngFor="let animal of (animals$ | async)">
-    {{animal.name}} - {{animal.dateModified | date:'short'}}
+  <li *ngFor="let animal of animals$ | async">
+    <ng-container
+      *ngTemplateOutlet="animalOut; context: { animal: this.animal }"
+    ></ng-container>
   </li>
 </ul>
 
+<ng-template #animalOut let-animal="animal">
+  {{ animal.name }}
+  <ul>
+    <li>ID: {{animal.id}}</li>
+    <li>Date Modified: {{ animal.dateModified | date: 'short' }}</li>
+  </ul>
+</ng-template>
