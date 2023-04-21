@@ -20,7 +20,7 @@ type AnimalFormGroup = {
       <label for="animalName">Name:</label>
       <input id="animalName" formControlName="name" maxLength="30">
           
-      <button type="submit" [disabled]="editForm.controls.name.pristine||editForm.invalid">Update</button>
+      <button type="submit" [disabled]="editForm.pristine||editForm.invalid">Update</button>
     </form>
   `,
 })
