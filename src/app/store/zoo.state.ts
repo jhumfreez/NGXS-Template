@@ -55,13 +55,6 @@ export class ZooState {
     return ctx.getState();
   }
 
-  // @Select() // OMG "Selector" not "Select"! *cries*
-  @Selector([ZooState.getZooState])
-  static getZooTitle(zoo: ZooStateModel) {
-    console.log('%c' + 'Handling change detected for title', 'color: magenta');
-    return zoo.title;
-  }
-
   @Selector([ZooState.getZooState])
   static getInventory(zoo: ZooStateModel) {
     // static getInventory(ctx: StateContext<ZooStateModel>) {
@@ -184,6 +177,7 @@ export class ZooStateQuery {
   // parameter if a typed selector or a StateToken that includes the type of the model
   // is provided to the function.
   // src: https://www.ngxs.io/advanced/selector-utils
+  // Note: Not available in version 3.7
   static getStateProp = createPropertySelectors(ZOO_STATE_TOKEN);
 
   @Selector([ZooStateQuery.getStateProp.inventory])
