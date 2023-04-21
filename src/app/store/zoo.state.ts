@@ -57,10 +57,7 @@ export class ZooState {
   // @Select() // OMG "Selector" not "Select"! *cries*
   @Selector([ZooState.getZooState])
   static getZooTitle(zoo: ZooStateModel) {
-    console.log(
-      '%c' + 'Handling change detected for title',
-      'color: magenta'
-    );
+    console.log('%c' + 'Handling change detected for title', 'color: magenta');
     return zoo.title;
   }
 
@@ -70,10 +67,7 @@ export class ZooState {
     // Note: Default behavior for selectors changes in v4 is to not require injection of state, because it will cause each selector to re-execute on all changes.
     // https://www.ngxs.io/concepts/select#selector-options
     // https://www.ngxs.io/advanced/optimizing-selectors
-    console.log(
-      '%c' + 'Handling change detected for inventory',
-      'color: cyan'
-    );
+    console.log('%c' + 'Handling change detected for inventory', 'color: cyan');
     return zoo.inventory;
   }
 
@@ -88,7 +82,8 @@ export class ZooState {
   // https://www.ngxs.io/advanced/operators#advanced-example
   @Action(Zoo.InsertAnimal)
   insertAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.InsertAnimal) {
-    console.log('%c' + `Patching Inventory...`, 'color:yellow');
+    // For demo
+    // console.log('%c' + `Patching Inventory...`, 'color:yellow');
 
     // Note: structuredClone supported in NodeJS v17+
     // - For types: @types/node (version should match the one supported by your NodeJS runtime)
@@ -110,7 +105,8 @@ export class ZooState {
 
     const len = ctx.getState().inventory.length;
     const latest = ctx.getState().inventory[len - 1];
-    console.log('%c' + `Patched Inventory (${len}):`, 'color:yellow', latest);
+    // For demo
+    // console.log('%c' + `Patched Inventory (${len}):`, 'color:yellow', latest);
     if (
       latest === action.animal ||
       latest.categories === action.animal.categories
