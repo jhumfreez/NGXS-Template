@@ -173,7 +173,6 @@ export class ZooState {
 }
 
 // NGXS version <4: An alternative solution to turning off injectContainerState
-// FIXME: Doesn't appear to work...
 /**
  * Zoo State meta selector
  * * https://www.ngxs.io/concepts/select#meta-selectors
