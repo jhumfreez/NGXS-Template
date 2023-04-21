@@ -5,7 +5,7 @@ import { Observable, tap } from 'rxjs';
 import { mockAnimals } from './mocks/animal.mock';
 import { Animal } from './models/models';
 import { Zoo } from './store/zoo.actions';
-import { ZooState } from './store/zoo.state';
+import { ZooState, ZooStateQuery } from './store/zoo.state';
 import { getRandomInt } from './shared/utils';
 
 @Component({

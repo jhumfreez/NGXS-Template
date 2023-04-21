@@ -45,21 +45,22 @@ export class ZooState {
   // as if it didn't specify a state to inject. That means this will cause it to execute on every update.
   // - This is not desireable. Selectors that perform operations like finding something in a list (or something more expensive; selectors are capable of async operations) will run way more often than necessary.
   @Selector([ZooState])
-  static getZoo(ctx: StateContext<ZooStateModel>) {
-    console.log(
-      '%c' + 'Handling change detected for entire state!',
-      'color: orange'
-    );
+  static getZooState(ctx: StateContext<ZooStateModel>) {
+    // Uncomment for demo
+    // console.log(
+    //   '%c' + 'Handling change detected for entire state!',
+    //   'color: orange'
+    // );
     return ctx.getState();
   }
 
   // @Select() // OMG "Selector" not "Select"! *cries*
-  @Selector([ZooState.getZoo])
+  @Selector([ZooState.getZooState])
   static getZooTitle(zoo: ZooStateModel) {
     return zoo.title;
   }
 
-  @Selector([ZooState.getZoo])
+  @Selector([ZooState.getZooState])
   static getInventory(zoo: ZooStateModel) {
     // static getInventory(ctx: StateContext<ZooStateModel>) {
     // Note: Default behavior for selectors changes in v4 is to not require injection of state, because it will cause each selector to re-execute on all changes.
@@ -165,5 +166,27 @@ export class ZooState {
     ctx.patchState({
       title: action.title,
     });
+  }
+}
+
+// NGXS version <4: An alternative solution to turning off injectContainerState
+/**
+ * Zoo State meta selector
+ * * https://www.ngxs.io/concepts/select#meta-selectors
+ * * https://www.ngxs.io/advanced/optimizing-selectors#memoization
+ */
+export class ZooStateQuery {
+  @Selector([ZooState.getZooState])
+  static getInventory(zoo: ZooStateModel) {
+    console.log(
+      '%c' + 'Handling change detected for inventory!',
+      'color: lime'
+    );
+    return zoo.inventory;
+  }
+
+  @Selector([ZooState.getZooState])
+  static getZooTitle(zoo: ZooStateModel) {
+    return zoo.title;
   }
 }
