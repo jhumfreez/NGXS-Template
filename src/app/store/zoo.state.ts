@@ -173,9 +173,9 @@ export class ZooState {
  */
 export class ZooStateQuery {
   // Property selector
-  // Type safety note: The createPropertySelectors function will not require a type
+  // "Type safety note: The createPropertySelectors function will not require a type
   // parameter if a typed selector or a StateToken that includes the type of the model
-  // is provided to the function.
+  // is provided to the function."
   // src: https://www.ngxs.io/advanced/selector-utils
   // Note: Not available in version 3.7
   static getStateProp = createPropertySelectors(ZOO_STATE_TOKEN);
