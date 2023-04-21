@@ -14,7 +14,7 @@ import { getRandomInt } from './shared/utils';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  @Select(ZooState.getZooTitle)
+  @Select(ZooStateQuery.getZooTitleProp)
   title$: Observable<string>;
 
   @Select(ZooState.getInventory)

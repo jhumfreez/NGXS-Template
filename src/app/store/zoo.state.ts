@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { createPropertySelectors } from '@ngxs/store';
 import {
   Action,
   Select,
@@ -172,23 +173,29 @@ export class ZooState {
 }
 
 // NGXS version <4: An alternative solution to turning off injectContainerState
+// FIXME: Doesn't appear to work...
 /**
  * Zoo State meta selector
  * * https://www.ngxs.io/concepts/select#meta-selectors
  * * https://www.ngxs.io/advanced/optimizing-selectors#memoization
  */
 export class ZooStateQuery {
-  @Selector([ZooState.getZooState])
-  static getInventory(zoo: ZooStateModel) {
+  // Property selector
+  static getStateProp = createPropertySelectors<ZooStateModel>(ZooState);
+
+  @Selector([ZooStateQuery.getStateProp.inventory])
+  static getInventory(inventory: Animal[]) {
     console.log(
       '%c' + 'Handling change detected for inventory!',
       'color: lime'
     );
-    return zoo.inventory;
+    return inventory;
   }
 
-  @Selector([ZooState.getZooState])
-  static getZooTitle(zoo: ZooStateModel) {
-    return zoo.title;
+  // Shouldn't re-run when adding inventory or cause inventory selector to re-run
+  @Selector([ZooStateQuery.getStateProp.title])
+  static getZooTitle(title: string) {
+    console.log('%c' + 'Handling change detected for title', 'color: green');
+    return title;
   }
 }
