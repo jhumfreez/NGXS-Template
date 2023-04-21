@@ -31,7 +31,8 @@ export class AppComponent {
   }
 
   setTitle() {
-    const currentTitle = this.store.selectSnapshot(ZooState.getZooTitle);
+    // Note: Reruns selector logic
+    const currentTitle = this.store.selectSnapshot(ZooStateQuery.getZooTitle);
     const options = ['Kansas City', 'San Diego', 'Austin', 'Pheonix'];
     let newOption = currentTitle;
     while (newOption === currentTitle) {
