@@ -14,10 +14,10 @@ import { getRandomInt } from './shared/utils';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  @Select(ZooStateQuery.getZooTitleProp)
+  @Select(ZooStateQuery.getZooTitle)
   title$: Observable<string>;
 
-  @Select(ZooState.getInventory)
+  @Select(ZooStateQuery.getInventory)
   animals$: Observable<Animal[]>;
 
   constructor(private store: Store) {
