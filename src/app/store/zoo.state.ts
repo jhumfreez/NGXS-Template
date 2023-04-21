@@ -57,6 +57,10 @@ export class ZooState {
   // @Select() // OMG "Selector" not "Select"! *cries*
   @Selector([ZooState.getZooState])
   static getZooTitle(zoo: ZooStateModel) {
+    console.log(
+      '%c' + 'Handling change detected for title',
+      'color: magenta'
+    );
     return zoo.title;
   }
 
@@ -67,7 +71,7 @@ export class ZooState {
     // https://www.ngxs.io/concepts/select#selector-options
     // https://www.ngxs.io/advanced/optimizing-selectors
     console.log(
-      '%c' + 'Handling change detected for inventory!',
+      '%c' + 'Handling change detected for inventory',
       'color: cyan'
     );
     return zoo.inventory;
@@ -85,7 +89,7 @@ export class ZooState {
   @Action(Zoo.InsertAnimal)
   insertAnimal(ctx: StateContext<ZooStateModel>, action: Zoo.InsertAnimal) {
     console.log('%c' + `Patching Inventory...`, 'color:yellow');
-    
+
     // Note: structuredClone supported in NodeJS v17+
     // - For types: @types/node (version should match the one supported by your NodeJS runtime)
     // https://developer.mozilla.org/en-US/docs/Web/API/structuredClone#browser_compatibility
