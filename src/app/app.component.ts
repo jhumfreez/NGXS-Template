@@ -36,7 +36,7 @@ export class AppComponent {
     const options = ['Kansas City', 'San Diego', 'Austin', 'Pheonix'];
     let newOption = currentTitle;
     while (newOption === currentTitle) {
-      newOption = options[getRandomInt(options.length - 1)];
+      newOption = options[getRandomInt(options.length)];
     }
     this.store.dispatch(new Zoo.SetTitle(newOption));
   }
