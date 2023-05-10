@@ -10,7 +10,7 @@ import { Animal } from '../models/models';
 // Form type definitions
 type AnimalMutable = Pick<Animal, 'name'>;
 type AnimalFormGroup = {
-  [Property in keyof AnimalMutable]: FormControl<AnimalMutable[Property]>;
+  [P in keyof AnimalMutable]: FormControl<AnimalMutable[P]>;
 };
 
 @Component({
