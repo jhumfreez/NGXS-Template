@@ -9,7 +9,7 @@
     <ul>
       <li class="content" *ngFor="let animal of animals$ | async">
         <ng-container
-          *ngTemplateOutlet="animalOut; context: { animal: this.animal }"
+          *ngTemplateOutlet="animalOut; context: { animal }"
         ></ng-container>
       </li>
     </ul>
