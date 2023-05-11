@@ -9,14 +9,14 @@
     <ul>
       <li class="content" *ngFor="let animal of animals$ | async">
         <ng-container
-          *ngTemplateOutlet="animalOut; context: { animal }"
+          *ngTemplateOutlet="animalOut; context: { myAnimal: animal }"
         ></ng-container>
       </li>
     </ul>
   </div>
 </div>
 
-<ng-template #animalOut let-animal="animal">
+<ng-template #animalOut let-animal="myAnimal">
   <p>{{ animal.name }}</p>
   <ul>
     <li>ID: {{ animal.id }}</li>
